@@ -1,0 +1,10 @@
+webapp:
+buid path para que a pasta apareca no sistema de pasta do projeto
+criar dentro da pasta webapps:
+	A pasta WEB-INF
+		Dentro da pasta WEB-INF criar os files: faces-config.xml, file web.xml;
+		Dentro da pasta WEB-INF criar a pasta template: LayoultPadrao.xhtml
+	A pasta resources/css
+		Dentro da pasta resouces... criar o file: sistema.css
+
+Na pagina 

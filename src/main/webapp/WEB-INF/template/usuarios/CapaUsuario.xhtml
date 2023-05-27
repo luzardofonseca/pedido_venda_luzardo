@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid columns="2" style="width: 100%; margin-top: 20px"
+		columnClasses="rotulo, campo">
+		<p:outputLabel value="Nome" />
+		<p:inputText id="nome" size="80" />
+
+		<p:outputLabel value="Email" for="email" />
+		<p:inputText id="email" label="email" size="40" required="true"
+			requiredMessage="Por favor, entre com seu e-mail."
+			validatorMessage="Formato Inválido">
+			<f:validateRegex
+				pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+		</p:inputText>
+		<p:watermark for="email" value="Endereço de Email *" />
+		<p:message for="email" />
+
+		<p:outputLabel value="Senha" />
+		<p:password size="30" />
+
+	</p:panelGrid>
+
+	
+
+
+</ui:composition>

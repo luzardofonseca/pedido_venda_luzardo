@@ -1,0 +1,50 @@
+<ui:composition template="/WEB-INF/template/LayoultPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Novo Usuário</ui:define>
+
+	<ui:define name="corpo">
+
+		<h:form id="frm">
+			<p:messages />
+			<h1>Novo Usuário</h1>
+
+			<ui:include src="/WEB-INF/template/usuarios/BotoesUsuario.xhtml" />
+
+			<ui:include src="/WEB-INF/template/usuarios/CapaUsuario.xhtml" />
+
+			<p:panelGrid columns="2" style="width:100% margin-top:20px"
+				columnClasses="rotulo, campo">
+
+				<p:selectOneMenu id="grupo" value="#{cadastroUsuarioBean.grupo}">
+					<f:selectItem itemLabel="Selecione..." itemValue="" />
+					<f:selectItems value="#{cadastroUsuarioBean.grupos}" var="grupo"
+						itemLabel="#{grupo}" itemValue="#{grupo}" />
+				</p:selectOneMenu>
+
+				<p:commandButton value="adicionar Grupo" />
+			</p:panelGrid>
+
+			<p:dataTable id="grupoTable" value="#{cadastroUsuarioBean.grupos}"
+				var="grupo" style="margin-top: 20px"
+				emptyMessage="Nenhum Pedido Encontrado" rows="20" paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+				<p:column headerText="Grupo"
+					style="text-align: center; width: 300px">
+					<h:outputText value="#{grupo}" />
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<!-- <p:button icon="ui-icon-pencil" title="Editar" /> -->
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

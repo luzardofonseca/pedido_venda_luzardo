@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/template/LayoultPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Novo Cliente</ui:define>
+
+	<ui:define name="corpo">
+
+		<h:form id="frm">
+			<p:messages />
+			<h1>Novo cliente</h1>
+
+			<ui:include src="/WEB-INF/template/clientes/BotoesCliente.xhtml" />
+
+			<ui:include src="/WEB-INF/template/clientes/CapaCliente.xhtml" />
+
+			<p:dataTable id="clienteTable"
+				value="#{cadastroClienteBean.enderecosClientes}" var="endereco"
+				style="margin-top: 20px" emptyMessage="Nenhum Pedido Encontrado"
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+				<p:column headerText="Logradouro" style="text-align: center; width: 300px">
+					<h:outputText value="#{endereco.logradouro}" />
+				</p:column>
+				
+				<p:column headerText="Numero" style="text-align: center; width: 100px">
+					<h:outputText value="#{endereco.numero}" />
+				</p:column>
+				
+				<p:column headerText="Complemento"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{endereco.complemento}" />
+				</p:column>
+				
+				<p:column headerText="CEP"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{endereco.cep}" />
+				</p:column>
+				
+				<p:column headerText="Cidade-UF"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{endereco.cidadeUF}" />
+				</p:column>
+
+				<p:column style="width: 100px; text-align: center">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
