@@ -18,34 +18,35 @@ public class CadastroClienteBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String tipo;
-	
+
 	private String nomeTipo;
 
 	private String cpfcnpj;
 
 	private String masksCpfCnpj;
-	
-	private List<EnderecoCliente> enderecosClientes;
-	
 
-	public void setEnderecosClientes(List<EnderecoCliente> enderecosClientes) {
-		this.enderecosClientes = enderecosClientes;
-	}
+	private List<EnderecoCliente> enderecoClientes = new ArrayList<>();;
+	private EnderecoCliente enderecoSelecionado;
+	private EnderecoCliente enderecoCliente = new EnderecoCliente();
 
 	public CadastroClienteBean() {
-		
-		enderecosClientes = new ArrayList<EnderecoCliente>();
-		
-		enderecosClientes.add(new EnderecoCliente("Rua da Tabocas", "321", "apt 102", "60.000-230", "FORTALEZA/CE"));
-		enderecosClientes.add(new EnderecoCliente("Rua da jonata", "401", "apt 100", "60.430-230", "CAUCAIA/CE"));
-		enderecosClientes.add(new EnderecoCliente("Rua dos Indios", "102", "perto do acougue", "61.410-230", "IGUATU/CE"));
+
+	}
+
+	public void incluirEndereco() {
+		enderecoClientes.add(enderecoCliente);
+		enderecoCliente = new EnderecoCliente();
+	}
+
+	public void excluirEndereco() {
+		enderecoClientes.remove(enderecoSelecionado);
 	}
 
 	public void atualizar() {
 		System.out.println("Tipo" + this.tipo);
 		System.out.println("cnpnj" + this.cpfcnpj);
 		System.out.println("qual o tipo de mascara" + this.masksCpfCnpj);
-		
+
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Perfil Atualizado!"));
 	}
 
@@ -53,21 +54,19 @@ public class CadastroClienteBean implements Serializable {
 
 		if (getTipo().equalsIgnoreCase("PF")) {
 			masksCpfCnpj = "999.999.999-99";
-			nomeTipo="CPF";
-			
+			nomeTipo = "CPF";
+
 		} else {
 			masksCpfCnpj = "99.999.999/9999-99";
 			nomeTipo = "CNPJ";
 		}
 	}
-	
-	
-	
-	//getteres e setters
+
+	// getteres e setters
 	public String getCpfcnpj() {
 		return cpfcnpj;
 	}
-	
+
 	public void setCpfcnpj(String cpfcnpj) {
 		this.cpfcnpj = cpfcnpj;
 	}
@@ -91,9 +90,29 @@ public class CadastroClienteBean implements Serializable {
 	public String getNomeTipo() {
 		return nomeTipo;
 	}
-	
-	public List<EnderecoCliente> getEnderecosClientes() {
-		return enderecosClientes;
+
+	public List<EnderecoCliente> getEnderecoClientes() {
+		return enderecoClientes;
 	}
-	
+
+	public void setEnderecoClientes(List<EnderecoCliente> enderecoClientes) {
+		this.enderecoClientes = enderecoClientes;
+	}
+
+	public EnderecoCliente getEnderecoSelecionado() {
+		return enderecoSelecionado;
+	}
+
+	public void setEnderecoSelecionado(EnderecoCliente enderecoSelecionado) {
+		this.enderecoSelecionado = enderecoSelecionado;
+	}
+
+	public EnderecoCliente getEnderecoCliente() {
+		return enderecoCliente;
+	}
+
+	public void setEnderecoCliente(EnderecoCliente enderecoCliente) {
+		this.enderecoCliente = enderecoCliente;
+	}
+
 }

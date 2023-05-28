@@ -5,20 +5,25 @@ import java.io.Serializable;
 public class EnderecoCliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String logradouro;
-	
+
 	private String numero;
-	
+
 	private String complemento;
-	
+
 	private String cep;
-	
+
 	private String cidadeUF;
 	
 	
-public EnderecoCliente(String logradouro, String numero, String complemento, String cep, String cidadeUF) {
-		//super();
+
+	public EnderecoCliente() {
+		// super();
+	}
+
+	public EnderecoCliente(String logradouro, String numero, String complemento, String cep, String cidadeUF) {
+		// super();
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.complemento = complemento;
@@ -66,9 +71,5 @@ public EnderecoCliente(String logradouro, String numero, String complemento, Str
 	public void setCidadeUF(String cidadeUF) {
 		this.cidadeUF = cidadeUF;
 	}
-	
-	
-	
-	
 
 }

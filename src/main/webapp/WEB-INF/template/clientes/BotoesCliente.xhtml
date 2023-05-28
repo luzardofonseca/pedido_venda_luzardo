@@ -8,9 +8,12 @@
 		<p:toolbarGroup>
 			<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
 			<!--outcome ir para propria tela  -->
-			<p:commandButton value="Salvar" />
+
+			<p:commandButton value="Salvar" styleClass="custom"
+				action="#{cadastroClienteBean.atualizar}" update="@form" />
+
 		</p:toolbarGroup>
-		 <p:toolbarGroup align="right">
+		<p:toolbarGroup align="right">
 			<!--<p:commandButton value="Emitir" />
 			<p:commandButton value="Cancelar" />
 			<p:commandButton value="Enviar por e-mail" /> -->

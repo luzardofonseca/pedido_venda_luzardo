@@ -17,41 +17,79 @@
 
 			<ui:include src="/WEB-INF/template/clientes/CapaCliente.xhtml" />
 
-			<p:dataTable id="clienteTable"
-				value="#{cadastroClienteBean.enderecosClientes}" var="endereco"
+			<p:dataTable id="enderecoClienteTable"
+				value="#{cadastroClienteBean.enderecoClientes}" var="endereco"
 				style="margin-top: 20px" emptyMessage="Nenhum Pedido Encontrado"
 				rows="20" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
-				<p:column headerText="Logradouro" style="text-align: center; width: 300px">
+
+				<p:column headerText="Logradouro"
+					style="text-align: center; width: 300px">
 					<h:outputText value="#{endereco.logradouro}" />
 				</p:column>
-				
-				<p:column headerText="Numero" style="text-align: center; width: 100px">
+
+				<p:column headerText="Numero"
+					style="text-align: center; width: 100px">
 					<h:outputText value="#{endereco.numero}" />
 				</p:column>
-				
+
 				<p:column headerText="Complemento"
 					style="text-align: center; width: 100px">
 					<h:outputText value="#{endereco.complemento}" />
 				</p:column>
-				
-				<p:column headerText="CEP"
-					style="text-align: center; width: 100px">
+
+				<p:column headerText="CEP" style="text-align: center; width: 100px">
 					<h:outputText value="#{endereco.cep}" />
 				</p:column>
-				
-				<p:column headerText="Cidade-UF"
+
+				<p:column headerText="Cidade"
 					style="text-align: center; width: 100px">
 					<h:outputText value="#{endereco.cidadeUF}" />
 				</p:column>
 
 				<p:column style="width: 100px; text-align: center">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+					<p:commandButton icon="ui-icon-trash"
+						oncomplete="confirmacao.show()">
+						<f:setPropertyActionListener value="#{cliente}"
+							target="#{adicionarClienteBean.clienteSelecionado}" />
+					</p:commandButton>
 				</p:column>
-
 			</p:dataTable>
 
-		</h:form>
+			<p:dialog header="Inclusão de Endereço"
+				widgetVar="adicionarEnderecoDialogo" modal="true" resizable="false">
+				<h:panelGroup id="inclusaoPanel">
+					<p:messages />
+					<p:panelGrid columns="2">
+						<p:outputLabel value="Logradouro" />
+						<p:inputText
+							value="#{cadastroClienteBean.enderecoCliente.logradouro}"
+							required="true"
+							requiredMessage="Informe o Logradouro do Cliente." />
+
+						<p:outputLabel value="Telefone" />
+						<p:inputText value="#{cadastroClienteBean.enderecoCliente.numero}"
+							required="true" requiredMessage="Informe o Telefone do Cliente." />
+
+						<p:outputLabel value="Complemento" />
+						<p:inputText
+							value="#{cadastroClienteBean.enderecoCliente.complemento}" />
+
+						<p:outputLabel value="CEP" />
+						<p:inputText value="#{cadastroClienteBean.enderecoCliente.cep}" />
+						
+						<p:outputLabel value="Cidade" />
+						<p:inputText value="#{cadastroClienteBean.enderecoCliente.cidadeUF}"
+							required="true" requiredMessage="Informe a Cidade do Cliente." />
+					</p:panelGrid>
+
+					<p:commandButton value="Incluir"
+						action="#{cadastroClienteBean.incluirEndereco}"
+						update="enderecoClienteTable" oncomplete="tratarInclusaoCliente(args)" />
+				</h:panelGroup>
+			</p:dialog>
+			
+				</h:form>
 	</ui:define>
 </ui:composition>
