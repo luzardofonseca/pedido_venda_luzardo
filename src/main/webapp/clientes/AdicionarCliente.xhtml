@@ -22,8 +22,16 @@
 	</script>
 
 	<h:form>
-		<p:button value="Adicionar Cliente"
+		
+		<p:toolbar style="margin-top: 20px">
+			<p:toolbarGroup>
+				<p:button value="Adicionar Cliente"
 			onclick="adicionarClienteDialogo.show(); return false;" />
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<p:button value="Novo" outcome="/clientes/CadastroCliente" />
+			</p:toolbarGroup>
+		</p:toolbar>
 
 		<p:dataTable value="#{adicionarClienteBean.clientes}" var="cliente"
 			id="clientesTable" emptyMessage="Não existem Clientes.">
@@ -45,18 +53,18 @@
 			</p:column>
 		</p:dataTable>
 
-		
+
 
 		<p:confirmDialog header="Exclusão de Cliente"
 			message="Tem certeza que deseja excluir o cliente?"
 			widgetVar="confirmacao">
 
 			<p:commandButton value="Sim" update="clientesTable"
-				action="#{adicionarClienteBean.excluirCliente}" 
+				action="#{adicionarClienteBean.excluirCliente}"
 				oncomplete="confirmacao.hide();return false;" />
 			<p:button value="Não" onclick="confirmacao.hide(); return false;" />
 		</p:confirmDialog>
-		
+
 		<p:dialog header="Inclusão de Cliente"
 			widgetVar="adicionarClienteDialogo" modal="true" resizable="false">
 			<h:panelGroup id="inclusaoPanel">
@@ -73,8 +81,7 @@
 
 				<p:commandButton value="Incluir"
 					action="#{adicionarClienteBean.incluirCliente}"
-					update="clientesTable"
-					oncomplete="tratarInclusaoCliente(args)" />
+					update="clientesTable" oncomplete="tratarInclusaoCliente(args)" />
 			</h:panelGroup>
 		</p:dialog>
 

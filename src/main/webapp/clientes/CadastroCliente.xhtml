@@ -17,6 +17,9 @@
 
 			<ui:include src="/WEB-INF/template/clientes/CapaCliente.xhtml" />
 
+			<p:button value="Adicionar Endereço"
+				onclick="adicionarEnderecoDialogo.show(); return false;" />
+
 			<p:dataTable id="enderecoClienteTable"
 				value="#{cadastroClienteBean.enderecoClientes}" var="endereco"
 				style="margin-top: 20px" emptyMessage="Nenhum Pedido Encontrado"
@@ -78,18 +81,28 @@
 
 						<p:outputLabel value="CEP" />
 						<p:inputText value="#{cadastroClienteBean.enderecoCliente.cep}" />
-						
+
 						<p:outputLabel value="Cidade" />
-						<p:inputText value="#{cadastroClienteBean.enderecoCliente.cidadeUF}"
+						<p:inputText
+							value="#{cadastroClienteBean.enderecoCliente.cidadeUF}"
 							required="true" requiredMessage="Informe a Cidade do Cliente." />
 					</p:panelGrid>
 
 					<p:commandButton value="Incluir"
 						action="#{cadastroClienteBean.incluirEndereco}"
-						update="enderecoClienteTable" oncomplete="tratarInclusaoCliente(args)" />
+						update="enderecoClienteTable inclusaoPanel"
+						oncomplete="tratarInclusaoCliente(args)" />
 				</h:panelGroup>
 			</p:dialog>
-			
-				</h:form>
+
+		</h:form>
+
+		<script>
+			function tratarInclusaoCliente(args) {
+				if (!args.validationFailed) {
+					adicionarEnderecoDialogo.hide();
+				}
+			}
+		</script>
 	</ui:define>
 </ui:composition>

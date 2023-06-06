@@ -34,6 +34,7 @@ public class CadastroClienteBean implements Serializable {
 	}
 
 	public void incluirEndereco() {
+		System.out.println(enderecoCliente.getLogradouro());
 		enderecoClientes.add(enderecoCliente);
 		enderecoCliente = new EnderecoCliente();
 	}

@@ -18,21 +18,15 @@ public class PesquisaClientesBean {
 	
 	private List<Cliente> clientes;
 
-	public PesquisaClientesBean() {
-		
-		clientes = new ArrayList<Cliente>();
-		
-		for (int i = 0; i < 50; i++) {
-			
-			adicionarCliente();
-			
-		}
-		
+	public PesquisaClientesBean() {		
+		clientes = new ArrayList<Cliente>();		
+		for (int i = 0; i < 50; i++) {			
+			adicionarCliente();			
+		}		
 	}
 
 	private void adicionarCliente() {
-		clientes.add(new Cliente(getNomeEmpresaAletario(), getTipoEmpresa(), getCnpjcpfEmpresas()));
-		
+		clientes.add(new Cliente(getNomeEmpresaAletario(), getTipoEmpresa(), getCnpjcpfEmpresas()));		
 	}
 
 	private String getNomeEmpresaAletario() {

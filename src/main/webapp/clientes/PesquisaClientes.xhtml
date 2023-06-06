@@ -16,7 +16,7 @@
 					<p:commandButton value="Pesquisar" id="botaoPesquisar" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" />
+					<p:button value="Novo" outcome="/clientes/CadastroCliente" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -48,11 +48,17 @@
 
 				<p:column style="width: 100px; text-align: center">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:commandButton icon="ui-icon-trash" title="Excluir" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confirmacaoExclusao.show()" />
 				</p:column>
 
 			</p:dataTable>
 
+			<p:confirmDialog header="WExclusão de cliente"
+				message="Tem certeza que deseja excluir o Cliente"
+				widgetVar="confirmacaoExclusao">
+					<p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
+					<p:commandButton value="Sim" oncomplete="confirmacaoExclusao.hide()"  />
+			</p:confirmDialog>
 
 		</form>
 
