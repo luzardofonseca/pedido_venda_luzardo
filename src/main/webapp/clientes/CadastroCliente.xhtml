@@ -53,18 +53,31 @@
 				<p:column style="width: 100px; text-align: center">
 					<p:button icon="ui-icon-pencil" title="Editar" />
 					<p:commandButton icon="ui-icon-trash"
-						oncomplete="confirmacao.show()">
-						<f:setPropertyActionListener value="#{cliente}"
-							target="#{adicionarClienteBean.clienteSelecionado}" />
+						oncomplete="confirmacao.show()"
+						process="@this enderecoClienteTable">
+						<f:setPropertyActionListener value="#{endereco}"
+							target="#{cadastroClienteBean.enderecoSelecionado}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+
+
+			<p:confirmDialog header="Exclusão de endereço"
+				message="Tem certeza que deseja excluir o Endereco"
+				widgetVar="confirmacao">
+
+				<p:commandButton value="Sim" update="enderecoClienteTable"
+					process="@this enderecoClienteTable"
+					action="#{cadastroClienteBean.excluirEndereco}"
+					oncomplete="confirmacao.hide();return false;" />
+				<p:button value="Não" onclick="confirmacao.hide(); return false;" />
+			</p:confirmDialog>
 
 			<p:dialog header="Inclusão de Endereço"
 				widgetVar="adicionarEnderecoDialogo" modal="true" resizable="false">
 				<h:panelGroup id="inclusaoPanel">
 					<p:messages />
-					<p:panelGrid columns="2">
+					<p:panelGrid id="panelDados" columns="2">
 						<p:outputLabel value="Logradouro" />
 						<p:inputText
 							value="#{cadastroClienteBean.enderecoCliente.logradouro}"
@@ -90,8 +103,14 @@
 
 					<p:commandButton value="Incluir"
 						action="#{cadastroClienteBean.incluirEndereco}"
+<<<<<<< Updated upstream
 						update="enderecoClienteTable inclusaoPanel"
 						oncomplete="tratarInclusaoCliente(args)" />
+=======
+						update="enderecoClienteTable"
+						oncomplete="tratarInclusaoCliente(args)"
+						process="panelDados @this" />
+>>>>>>> Stashed changes
 				</h:panelGroup>
 			</p:dialog>
 
